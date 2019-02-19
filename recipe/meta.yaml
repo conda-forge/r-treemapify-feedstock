@@ -1,4 +1,4 @@
-{% set version = '2.5.0' %}
+{% set version = "2.5.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,12 +11,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/treemapify_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/treemapify/treemapify_{{ version }}.tar.gz
-  sha256: b8e5697e3d06ab94e6c06f1bbf0dc804302f8d134e30cf7f18f52e1745cd1869
+  sha256: 63a88c595224edac12555a192df3a85eb2f3a57aae979320b94e9032fbf7cef8
 
 build:
   noarch: generic
   merge_build_host: True  # [win]
-  number: 1000
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
