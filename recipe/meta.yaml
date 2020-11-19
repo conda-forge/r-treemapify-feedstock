@@ -1,4 +1,4 @@
-{% set version = "2.5.3" %}
+{% set version = "2.5.4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,12 +11,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/treemapify_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/treemapify/treemapify_{{ version }}.tar.gz
-  sha256: 63a88c595224edac12555a192df3a85eb2f3a57aae979320b94e9032fbf7cef8
+  sha256: bac36e85970d04c359d690db926c95facfa267fdd5a60674681f8ee40cefe29f
 
 build:
   noarch: generic
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -43,7 +43,7 @@ about:
   license: GPL (>= 3)
   summary: Provides 'ggplot2' geoms for drawing treemaps.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
