@@ -5,11 +5,9 @@ Home: https://github.com/wilkox/treemapify
 
 Package license: GPL (>= 3)
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-treemapify-feedstock/blob/master/LICENSE.txt)
 
 Summary: Provides 'ggplot2' geoms for drawing treemaps.
-
-
 
 Current build status
 ====================
