@@ -1,4 +1,4 @@
-{% set version = "2.5.6" %}
+{% set version = "2.6.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -6,30 +6,38 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: treemapify_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/treemapify_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/treemapify/treemapify_{{ version }}.tar.gz
-  sha256: 0fa766f3afaaed889fb62f272ed2b4bb82a8a172a40f0779795fdc2c08f225f0
+  sha256: 05ab8dad3a72d80d838454da45ba6ce1260c6b0bfa9237839639d5e023d9e219
 
 build:
   noarch: generic
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
+    - r-cli >=3.6.1
     - r-ggfittext >=0.5.0
-    - r-ggplot2 >=2.2.1
+    - r-ggplot2 >=3.5
+    - r-svglite
   run:
     - r-base
+    - r-cli >=3.6.1
     - r-ggfittext >=0.5.0
-    - r-ggplot2 >=2.2.1
+    - r-ggplot2 >=3.5
+    - r-svglite
 
 test:
   commands:
@@ -38,10 +46,11 @@ test:
 
 about:
   home: https://github.com/wilkox/treemapify
-  license: GPL (>= 3)
+  license: GPL-3.0-or-later
   summary: Provides 'ggplot2' geoms for drawing treemaps.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
