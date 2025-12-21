@@ -6,7 +6,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: treemapify_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/treemapify_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/treemapify/treemapify_{{ version }}.tar.gz
@@ -18,18 +17,27 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
+    - r-cli >=3.6.1
     - r-ggfittext >=0.5.0
-    - r-ggplot2 >=2.2.1
+    - r-ggplot2 >=3.5
+    - r-svglite
   run:
     - r-base
+    - r-cli >=3.6.1
     - r-ggfittext >=0.5.0
-    - r-ggplot2 >=2.2.1
+    - r-ggplot2 >=3.5
+    - r-svglite
 
 test:
   commands:
@@ -38,10 +46,11 @@ test:
 
 about:
   home: https://github.com/wilkox/treemapify
-  license: GPL (>= 3)
+  license: GPL-3.0-or-later
   summary: Provides 'ggplot2' geoms for drawing treemaps.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
