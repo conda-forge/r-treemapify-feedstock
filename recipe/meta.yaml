@@ -1,4 +1,4 @@
-{% set version = "2.6.0" %}
+{% set version = "2.6.1" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/treemapify_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/treemapify/treemapify_{{ version }}.tar.gz
-  sha256: 05ab8dad3a72d80d838454da45ba6ce1260c6b0bfa9237839639d5e023d9e219
+  sha256: 32fa713cae4fc2c00353fd3fb57a386553d9d3973c55a619d32aa21011eb07c3
 
 build:
   noarch: generic
